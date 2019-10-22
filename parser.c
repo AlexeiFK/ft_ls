@@ -1,12 +1,23 @@
 #include "libft.h"
 #include <stdio.h>
 
+
+/*
+**==================================HEADER======================================
+*/
+
 # ifndef ERROR
-# define ERROR		(-1)
+# define ERROR			(-1)
 # endif
-# define PARSE_FLAG	0
-# define PARSE_FILE	1
+# define PARSE_FLAG		0
+# define PARSE_FILE		1
 # define FLAGS_STR		"ARalr"
+
+# define FLAG_A			0x1
+# define FLAG_R			0x2
+# define FLAG_A_SMALL	0x4	
+# define FLAG_L_SMALL	0x8
+# define FLAG_R_SMALL	0x10
 
 typedef struct		s_options
 {
@@ -15,6 +26,43 @@ typedef struct		s_options
 }					t_options;
 
 typedef int			(*t_parser)(char *str, t_options *s_options);
+
+/*
+**=============================END_OF_HEADER====================================
+*/
+
+/*
+**--------------------------------FLAG_STATE------------------------------------
+*/
+
+int					has_sflag_a(int flags)
+{
+	return (flags & FLAG_A);
+}
+
+int					has_flag_r(int flags)
+{
+	return (flags & FLAG_R);
+}
+
+int					has_flag_a_small(int flags)
+{
+	return (flags & FLAG_A_SMALL);
+}
+
+int					has_flag_l_small(int flags)
+{
+	return (flags & FLAG_R_SMALL);
+}
+
+int					has_sflag_r_small(int flags)
+{
+	return (flags & FLAG_R_SMALL);
+}
+
+/*
+**----------------------------------PARSER--------------------------------------
+*/
 
 int					usage()
 {
@@ -48,12 +96,12 @@ int					parse_flags(char *str, t_options *options)
 	flag_bucket = FLAGS_STR;
 	if (!*str || !(flag = ft_strchr(flag_bucket, *str)))
 		return (ERROR);
-	options->flags |= ft_power(2, flag - flag_bucket);
+	options->flags |= (1 << (flag - flag_bucket));
 	while (*(++str))
 	{
 		if (!(flag = ft_strchr(FLAGS_STR, *str)))
 			return (PARSE_FILE);
-		options->flags |= ft_power(2, flag - FLAGS_STR);
+		options->flags |= (1 << (flag - flag_bucket));
 	}
 	return (PARSE_FLAG);
 }
@@ -73,6 +121,10 @@ int					parse(char **argv, t_options *options)
 	}
 	return (state == ERROR ? FAILURE : SUCCESS);
 }
+
+/*
+**-----------------------PRINT_RESULT_PARSING_RESULT----------------------------
+*/
 
 void				print_fnames(void *str)
 {
@@ -95,6 +147,10 @@ void				print_flags(int flags)
 	printf("FLAGS:\n%s\n%-s\n\n", FLAGS_STR, nbr_ar);
 	return ;
 }
+
+/*
+**--------------------------------MAIN------------------------------------------
+*/
 
 int					main(int argc, char **argv)
 {
