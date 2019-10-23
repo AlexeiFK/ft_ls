@@ -6,7 +6,7 @@
 /*   By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 16:49:25 by rjeor-mo          #+#    #+#             */
-/*   Updated: 2019/10/23 17:51:12 by rjeor-mo         ###   ########.fr       */
+/*   Updated: 2019/10/23 21:13:10 by rjeor-mo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 int			read_flags(int argc, char **argv, t_flags *flags)
 {
 	//todo
+	flags->l = 0;
+	flags->t = 0;
+	flags->a = 1;
+	flags->r = 1;
+	flags->r_cap = 1;
 	return (0);
 }
 
