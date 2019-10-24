@@ -6,7 +6,7 @@
 #    By: rjeor-mo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/23 17:23:16 by rjeor-mo          #+#    #+#              #
-#    Updated: 2019/10/23 17:36:10 by rjeor-mo         ###   ########.fr        #
+#    Updated: 2019/10/24 18:03:40 by rjeor-mo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ INCLUDES= -I$(IDIR)
 
 HEADERS= ft_ls.h
 
-SRC= main.c ft_ls.c
+SRC= main.c ft_ls.c ft_lstrev.c ft_lstsort.c free_delete.c create_list.c print_ls.c
 
 #CFLAGS= -Wall -Wextra -Werror $(INCLUDES) -O2 -march=native
 CFLAGS= -Wall -Wextra $(INCLUDES)
